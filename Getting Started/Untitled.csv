@@ -1,0 +1,7 @@
+﻿role,수량,core / memory / disk,필수패키지,선택 패키지,OS,Column
+gateway,1,2 / 8 / 160G,"DNS, HAPROXY",DHCP,RHEL 7.x,
+bastion,1,2 / 8 /  300G,"FTP, OC, kubectl, openshift-install","TFTP, mirror-registry",RHEL 7.x,
+nfs,1,2 / 8 / 300G,nfs-server,,RHEL 7.x,
+master,3,4 / 16 / 160G,,,coreOS,
+worker,2,2 / 8 / 160G,,,coreOS,
+bootstrap,1,4 / 16 / 160G,,,coreOS,
