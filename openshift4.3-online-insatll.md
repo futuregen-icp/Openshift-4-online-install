@@ -9,6 +9,7 @@ This wiki is built in Notion. Here are all the tips you need to contribute.
   [장비 구성 최소 사양  및 필수 구성 요소(클릭)](openshift4.3-online-insatll/Untitled.csv)
 
   **서브 스크립션 등록** 
+  
   subscription-manager register --username=locli5427 --password=Hellena1^^
   subscription-manager refresh
   subscription-manager list --available --matches '*OpenShift*'
