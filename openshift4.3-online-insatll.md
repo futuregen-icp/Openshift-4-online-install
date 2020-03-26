@@ -10,19 +10,19 @@ This wiki is built in Notion. Here are all the tips you need to contribute.
 
   **서브 스크립션 등록** 
   
-  subscription-manager register --username=locli5427 --password=Hellena1^^
-  subscription-manager refresh
-  subscription-manager list --available --matches '*OpenShift*'
-  subscription-manager attach --pool=8a85f99c707807c801709f913ded7153
-  yum install openshift-ansible openshift-clients jq
-  subscription-manager repos     \
-      --enable="rhel-7-server-rpms"      \
-      --enable="rhel-7-server-extras-rpms"      \
-      --enable="rhel-7-server-ansible-2.8-rpms"      \
-      --enable="rhel-7-server-ose-4.3-rpms"
-  yum install openshift-ansible openshift-clients jq
-  subscription-manager list
-  subscription-manager status
+    subscription-manager register --username=locli5427 --password=Hellena1^^
+    subscription-manager refresh
+    subscription-manager list --available --matches '*OpenShift*'
+    subscription-manager attach --pool=8a85f99c707807c801709f913ded7153
+    yum install openshift-ansible openshift-clients jq
+    subscription-manager repos     \
+        --enable="rhel-7-server-rpms"      \
+        --enable="rhel-7-server-extras-rpms"      \
+        --enable="rhel-7-server-ansible-2.8-rpms"      \
+        --enable="rhel-7-server-ose-4.3-rpms"
+    yum install openshift-ansible openshift-clients jq
+    subscription-manager list
+    subscription-manager status
 
 ### 사전 확인 사항
 
