@@ -1,4 +1,4 @@
-# Getting Started
+# openshift4.3-online-insatll
 
 This wiki is built in Notion. Here are all the tips you need to contribute.
 
@@ -6,22 +6,22 @@ This wiki is built in Notion. Here are all the tips you need to contribute.
 
 ## 필수 사항 구성
 
-[장비 구성 최소 사양  및 필수 구성 요소(클릭)](Getting%20Started/Untitled.csv)
+[장비 구성 최소 사양  및 필수 구성 요소(클릭)](openshift4.3-online-insatll/Untitled.csv)
 
 **서브 스크립션 등록** 
-# subscription-manager register --username=locli5427 --password=Hellena1^^
-# subscription-manager refresh
-# subscription-manager list --available --matches '*OpenShift*'
-# subscription-manager attach --pool=8a85f99c707807c801709f913ded7153
-# yum install openshift-ansible openshift-clients jq
-# subscription-manager repos     \
+#### subscription-manager register --username=locli5427 --password=Hellena1^^
+#### subscription-manager refresh
+#### subscription-manager list --available --matches '*OpenShift*'
+#### subscription-manager attach --pool=8a85f99c707807c801709f913ded7153
+#### yum install openshift-ansible openshift-clients jq
+#### subscription-manager repos     \
      --enable="rhel-7-server-rpms"      \
      --enable="rhel-7-server-extras-rpms"      \
      --enable="rhel-7-server-ansible-2.8-rpms"      \
      --enable="rhel-7-server-ose-4.3-rpms"
-# yum install openshift-ansible openshift-clients jq
-# subscription-manager list
-# subscription-manager status
+#### yum install openshift-ansible openshift-clients jq
+#### subscription-manager list
+#### subscription-manager status
 
 ### 사전 확인 사항
 
@@ -37,37 +37,37 @@ clusterName : ocp4-1 , baseDoamain : fu.te
 
 - **gateway  설치**
 
-    [ firewall 설정(필수)](Getting%20Started/firewall.md)
+    [ firewall 설정(필수)](openshift4.3-online-insatll/firewall.md)
 
-    [IP Masquerade 설정(옵션)-(restricted natework 필수)](Getting%20Started/IP%20Masquerade%20restricted%20natework.md)
+    [IP Masquerade 설정(옵션)-(restricted natework 필수)](openshift4.3-online-insatll/IP%20Masquerade%20restricted%20natework.md)
 
-    [DHCP 설치(옵션)](Getting%20Started/DHCP.md)
+    [DHCP 설치(옵션)](openshift4.3-online-insatll/DHCP.md)
 
-    [HAProxy 설치 (필수)](Getting%20Started/HAProxy.md)
+    [HAProxy 설치 (필수)](openshift4.3-online-insatll/HAProxy.md)
 
-    [DNS 구성 (옵션-고객 환경에 따라 다름)-(테스트시 필수)](Getting%20Started/DNS.md)
+    [DNS 구성 (옵션-고객 환경에 따라 다름)-(테스트시 필수)](openshift4.3-online-insatll/DNS.md)
 
 - **bootstrap 설치**
 
-    [mirror registry 구성 (옵션)-(restricted natework 필수)](Getting%20Started/mirror%20registry%20restricted%20natework.md)
+    [mirror registry 구성 (옵션)-(restricted natework 필수)](openshift4.3-online-insatll/mirror%20registry%20restricted%20natework.md)
 
-    [TFTP 구성 (옵션)-(PXE 부팅 사용시)](Getting%20Started/TFTP%20PXE.md)
+    [TFTP 구성 (옵션)-(PXE 부팅 사용시)]openshift4.3-online-insatll/TFTP%20PXE.md)
 
-    [ftp 설치 (필수)](Getting%20Started/ftp.md)
+    [ftp 설치 (필수)](openshift4.3-online-insatll/ftp.md)
 
-    [firewall 설정(필수)](Getting%20Started/firewall%201.md)
+    [firewall 설정(필수)](openshift4.3-online-insatll/firewall%201.md)
 
-    [ssh 인증키 생성 ](Getting%20Started/ssh.md)
+    [ssh 인증키 생성 ](openshift4.3-online-insatll/ssh.md)
 
 - **nfs 설치**
 
-    [NFS - server 구성](Getting%20Started/NFS%20server.md)
+    [NFS - server 구성](openshift4.3-online-insatll/NFS%20server.md)
 
 - **준비 사항**
 
-    [Pullsecerts](Getting%20Started/Pullsecerts.md)
+    [Pullsecerts](openshift4.3-online-insatll/Pullsecerts.md)
 
-    [install 파일 구성](Getting%20Started/install.md)
+    [install 파일 구성](openshift4.3-online-insatll/install.md)
 
 ## Install
 
