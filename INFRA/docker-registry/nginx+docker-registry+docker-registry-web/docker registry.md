@@ -114,6 +114,7 @@ docker compose 를 이용하여 컨테이너 그룹으로 사용
 
     REGISTRY_BASIC_AUTH
       echo -n "admin:admin" | base64
+      
     # /docker-compose.yaml
     version: "3.3"
     services:
