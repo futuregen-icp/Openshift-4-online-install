@@ -10,7 +10,7 @@ This wiki is built in Notion. Here are all the tips you need to contribute.
 
   **서브 스크립션 등록** 
   
-    subscription-manager register --username=locli5427 --password=Hellena1^^
+    subscription-manager register --username=***** --password=*******
     subscription-manager refresh
     subscription-manager list --available --matches '*OpenShift*'
     subscription-manager attach --pool=8a85f99c707807c801709f913ded7153
