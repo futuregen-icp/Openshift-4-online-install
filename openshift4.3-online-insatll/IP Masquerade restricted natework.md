@@ -16,3 +16,7 @@
 
     firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I POSTROUTING -o ens192 -j MASQUERADE -s 192.168.40.0/24
     firewall-cmd --reload
+    
+### interface matric change
+
+    nmcli connection modify ens192 ipv4.route-metric 100
