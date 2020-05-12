@@ -52,7 +52,7 @@ clusterName : ocp4-1 , baseDoamain : fu.te
 
     [mirror registry 구성 (옵션)-(restricted natework 필수)](openshift4.3-online-insatll/mirror%20registry%20restricted%20natework.md)
 
-    [TFTP 구성 (옵션)-(PXE 부팅 사용시)]openshift4.3-online-insatll/TFTP%20PXE.md)
+    [TFTP 구성 (옵션)-(PXE 부팅 사용시)](openshift4.3-online-insatll/TFTP%20PXE.md)
 
     [ftp 설치 (필수)](openshift4.3-online-insatll/ftp.md)
 
