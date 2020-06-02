@@ -40,6 +40,8 @@ REG_CREDS=${XDG_RUNTIME_DIR}/containers/auth.json
 
 oc adm catalog mirror bug 인해 많은 문제가 발생하고 있어 skopeo copy --all 명령으로 다시 카피함.
 ```
+***yum -y install buildah skopeo podman***
+
 ***[root@mirror01 operator]# skopeo copy --all docker://registry.redhat.io/openshift-service-mesh/kiali-rhel7@sha256:e1fb3df10a7f7862e8549ad29e4dad97b22719896c10fe5109cbfb3b98f56900 docker://registry.ocp4.metlife.ibm:5000/openshift-service-mesh/kiali-rhel7***
 Getting image list signatures
 Copying 1 of 1 images in list
