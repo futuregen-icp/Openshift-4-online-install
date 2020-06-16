@@ -77,6 +77,10 @@ Writing manifest to image destination
 Storing signatures
 f814d8906f9d7b0e10f3335a9c48d75e993f58ea358866fa9a93e842eb0cfa7a 
 ```
+bug 추가 설명 url
+```
+https://www.cnblogs.com/ryanyangcs/p/13072268.html
+```
 
 Apply the manifests
 
