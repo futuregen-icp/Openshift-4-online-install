@@ -77,3 +77,56 @@ Writing manifest to image destination
 Storing signatures
 f814d8906f9d7b0e10f3335a9c48d75e993f58ea358866fa9a93e842eb0cfa7a 
 ```
+
+Apply the manifests
+
+```
+cd /etc/docker/certs.d
+oc apply -f ./redhat-operators-manifests
+```
+
+CatalogSource 정의
+
+```
+vi  catalogsource.yaml
+kind: CatalogSource
+metadata:
+  name: my-operator-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: registry.ocp44.fu.com:5000/olm/redhat-operators:v1
+  #image: <registry_host_name>:<port>/olm/redhat-operators:v1
+  displayName: My Operator Catalog
+  publisher: grpc
+```
+CatalogSource apply
+
+```
+oc create -f catalogsource.yaml
+```
+
+Verify the CatalogSource
+
+```
+# oc get pods -n openshift-marketplace
+NAME READY STATUS RESTARTS AGE
+my-operator-catalog-6njx6 1/1 Running 0 28s
+marketplace-operator-d9f549946-96sgr 1/1 Running 0 26h
+
+# oc get catalogsource -n openshift-marketplace
+NAME DISPLAY TYPE PUBLISHER AGE
+my-operator-catalog My Operator Catalog grpc 5s
+```
+
+
+error 정리
+```
+my-operator-catalog pod 에서 인증서로 인해 image pull 실패시  사용자 저의 registry의 인증서 복사 필요 함.
+실패한 노에만 해당 됨
+scp -r registry.ocp44.fu.com:/xxxxx/registry.ocp44.fu.com\:5000/{REGISTRY_HTTP_TLS_CERTIFICAT} worker01.ocp44.fu.com:/etc/containers/certs.d
+
+podman login registry.ocp44.fu.com:5000 -u admin
+```
+
+
