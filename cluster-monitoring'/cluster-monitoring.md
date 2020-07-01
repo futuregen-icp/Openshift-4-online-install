@@ -89,3 +89,37 @@ namespace: openshift-monitoring
 oc create -f cluster-monitoring-config.yml
 ```
 
+### openshift-monitoring pod 위치 이동
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-monitoring-config
+  namespace: openshift-monitoring
+data:
+  config.yaml: |
+    prometheusOperator:
+      nodeSelector:
+        foo: bar
+    prometheusK8s:
+      nodeSelector:
+        foo: bar
+    alertmanagerMain:
+      nodeSelector:
+        foo: bar
+    kubeStateMetrics:
+      nodeSelector:
+        foo: bar
+    grafana:
+      nodeSelector:
+        foo: bar
+    telemeterClient:
+      nodeSelector:
+        foo: bar
+    k8sPrometheusAdapter:
+      nodeSelector:
+        foo: bar
+    openshiftStateMetrics:
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+```
