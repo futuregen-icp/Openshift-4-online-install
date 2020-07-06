@@ -116,7 +116,9 @@ spec:
       storage: 1Mi
 ```
 
-
-
-
-
+Defaults storage class 설정 
+```
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: 'true'
+```
