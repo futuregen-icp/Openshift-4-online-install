@@ -20,3 +20,6 @@ spec:
   schedule: 0 0 * * *
   suspend: false  ==>  suspend: true
 ```
+
+
+1시간 이상 걸림 
