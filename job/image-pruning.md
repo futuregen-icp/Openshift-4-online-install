@@ -9,8 +9,14 @@ overview와 alertmanager에서 "Automatic image pruning is not enabled" 관련 �
 이 경고를 제거하려면 이름이 'cluster'인 imagepruner.imageregistry.operator.openshift.io 리소스를 만들어 이미지 정리기를 설치하십시오. 
 'suspend'필드가 'false'로 설정되어 있는지 확인하십시오.
 
-해결 
-oc edit  imagepruner.imageregistry.operator.openshift.io
+해결
 
+```
+oc edit  imagepruner.imageregistry.operator.openshift.io
+```
+
+```
 spec:
+  schedule: 0 0 * * *
   suspend: false  ==>  suspend: true
+```
