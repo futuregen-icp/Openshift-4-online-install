@@ -99,13 +99,50 @@ static_kuberesources_2020-07-08_150124.tar.gz : secret, configmaps, crt  등 정
 
 --처음 pending 상태에서 runnig 상태로 변경되는데  몇분 걸림--  
 
-**복구한 데이터 디플로이하기**
+**etcd 디플로이먼트 생성하기**
 
 	oc patch etcd cluster -p='{"spec": {"forceRedeploymentReason": "recovery-'"$( date --rfc-3339=ns )"'"}}' --type=merge 
 
 
-**reversion 확인**
+reversion 확인
 	
 	oc get etcd -o=jsonpath='{range .items[0].status.conditions[?(@.type=="NodeInstallerProgressing")]}{.reason}{"\n"}{.message}{"\n"}
 	AllNodesAtLatestRevision
 	3 nodes are at revision 3
+
+**kubeapiserver 디플로이먼트 생성하기**
+	
+	oc patch kubeapiserver cluster -p='{"spec": {"forceRedeploymentReason": "recovery-'"$( date --rfc-3339=ns )"'"}}' --type=merge
+
+reversion 확인
+	
+	oc get kubeapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type=="NodeInstallerProgressing")]}{.reason}{"\n"}{.message}{"\n"}'
+	AllNodesAtLatestRevision
+	3 nodes are at revision 3
+
+**kubecontrollermanager 디플로이먼트 생성하기**
+
+	oc patch kubecontrollermanager cluster -p='{"spec": {"forceRedeploymentReason": "recovery-'"$( date --rfc-3339=ns )"'"}}' --type=merge
+
+reversion 확인
+	
+	oc get kubecontrollermanager -o=jsonpath='{range .items[0].status.conditions[?(@.type=="NodeInstallerProgressing")]}{.reason}{"\n"}{.message}{"\n"}'
+	AllNodesAtLatestRevision
+	3 nodes are at revision 3
+
+**kubescheduler 디플로이먼트 생성하기**
+
+	oc patch kubescheduler cluster -p='{"spec": {"forceRedeploymentReason": "recovery-'"$( date --rfc-3339=ns )"'"}}' --type=merge
+
+reversion 확인
+
+	oc get kubescheduler -o=jsonpath='{range .items[0].status.conditions[?(@.type=="NodeInstallerProgressing")]}{.reason}{"\n"}{.message}{"\n"}'
+	AllNodesAtLatestRevision
+	3 nodes are at revision 3
+
+**클러스터의 조인 상태 확인**
+
+ 	$ oc get pods -n openshift-etcd | grep etcd
+	etcd-master01.ocp4.igotit.co.kr                3/3     Running     0          8d
+	etcd-master02.ocp4.igotit.co.kr                3/3     Running     0          8d
+	etcd-master03.ocp4.igotit.co.kr                3/3     Running     0          8d
