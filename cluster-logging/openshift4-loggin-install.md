@@ -12,6 +12,8 @@
 
 **1. Elasticsearch Operator 설치**
 
+** 웹콘솔 설치시 rbac 문제로 Elasticsearch 에서 문제 발생 **
+
 1. 웹 콘솔에서  Operators → OperatorHub로 이동  
 2. Elasticsearch Operator 선택 후 install 진행 (설치 화면의 설명 문서 읽어 볼 것 )  
 3. intall mode 에서 All namespaces on the cluster 선택 (기본값)  
