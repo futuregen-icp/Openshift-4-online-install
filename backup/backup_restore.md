@@ -1,6 +1,6 @@
-# OpenShift 4.4 badup - restrore 
+# OpenShift 4.4 backup - restrore 
 
-## OpenShift 4.4 badup
+## OpenShift 4.4 backup
 
 ### Master Server
 
