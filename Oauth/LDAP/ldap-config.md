@@ -27,7 +27,7 @@
 |----------------------------|------------------------------------------------------------|
 |![](./image/user-create-1.png)|좌측 메뉴 ou중 하나 선택 <br> 선택 이후 우측 메뉴에서  Create a child entry 클릭 <br> 우측 메뉴에서 default 선택  |
 |![](./image/user-create-2.png)|inetOrgPerson 선택 후 Proceed 클릭 |
-||step2에서 rdn-> uid 선택, cn-> username, sn-> username 입력 이후 Create Object 클릭|
+|![](./image/user-create-3.png)|step2에서 rdn-> uid 선택, cn-> username, sn-> username 입력 이후 Create Object 클릭|
 ||각 ou에 필요한 사용자 추가|
 
 
