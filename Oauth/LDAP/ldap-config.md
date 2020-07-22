@@ -8,9 +8,9 @@
 ## 관리 페이지 로그인 
 설치시  설정한  bindDN및 password를 이용하여 로그인 
 
-
-|![](./image/firest-br-id-pass.png){: width="300"}|![](./image/firest-br-id-pass-after.png){: width="300"}|
 |-|-|
+|----------------------------|------------------------------------------------------------|
+|![](./image/firest-br-id-pass.png){: width="300"}|![](./image/firest-br-id-pass-after.png){: width="300"}|
 
 ## ou 설정 
 
@@ -23,11 +23,13 @@
 
 ## user 생성 
 
+|||
+|----------------------------|------------------------------------------------------------|
 |![](./image/user-create-1.png)|좌측 메뉴 ou중 하나 선택 <br> 선택 이후 우측 메뉴에서  Create a child entry 클릭 <br> 우측 메뉴에서 default 선택  |
 |![](./image/user-create-2.png)|inetOrgPerson 선택 후 Proceed 클릭 |
 ||step2에서 rdn-> uid 선택, cn-> username, sn-> username 입력 이후 Create Object 클릭|
 ||각 ou에 필요한 사용자 추가|
-|----------------------------|------------------------------------------------------------|
+
 
 ### global config에 대한 ldif 
 
