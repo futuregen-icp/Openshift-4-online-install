@@ -35,8 +35,8 @@
 3. 입력 창에서  
    **Name             :  openid-ocp** <br>
    **Client ID        :  openid-ocp** <br>
-                      > keycloak에서 제공하는                
-                      > https://oauth-openshift.apps.<clustername\>.<basedomain\>/oauth2callback/<identiry provider name\> 앞의 도메인으로  <br>
+                      > keycloak에서 제공하는      Client ID           
+                      > https://oauth-openshift.apps.<clustername\>.<basedomain\>/oauth2callback/<identiry provider name\> 앞의 도메인으로 callbak <br>
    **Client Secret    : ec766561-d87c-449f-8f0e-4bae2c69cb7d** <br>
                     > keycloak 관리 사이트 -> Clients -> 사용할 Client ID -> Credentails<br>
                     > Client Authenticator : client and secret 선택 <br> 
