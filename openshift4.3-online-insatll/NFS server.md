@@ -25,12 +25,8 @@
     	End? -0
     
     mkfs.xfs /dev/sdb1
-    mkdir /mount
-    echo "UUID=b688463c-cbaa-4676-aedc-054c461ce6b6 /mount xfs    defaults        0 0" >> /etc/fstab
-    mount -a
-    mkdir /registry
-    mkdir /mount/registry
-    echo "/mount/registry         /registry               none    bind,defaults   0 0" >> /etc/fstab
+    mkdir /data/nfs/registry -p
+    echo "UUID=b688463c-cbaa-4676-aedc-054c461ce6b6         /data/nfs/registry               none    defaults   0 0" >> /etc/fstab
     mount -a
     
     chown nfsnobody.nfsnobody /registry -R
