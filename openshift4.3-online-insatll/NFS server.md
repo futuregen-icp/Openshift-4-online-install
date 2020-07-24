@@ -43,5 +43,9 @@
 
 ### NFS export
 
+    cat /etc/exports
+    /data/nfs/registry *(rw,root_squash,all_squash)
+    /data/nfs/datas *(rw,root_squash,all_squash
+
     exportfs -rv 
     /registry *
