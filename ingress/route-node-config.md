@@ -50,7 +50,8 @@ spec:
 ```
 [core@bastion ingress]$ oc get pod -A -o wide| grep  route
 openshift-ingress                                  router-default-585b68dccd-5fgxs                                   1/1     Running        0          2d20h   192.168.1.172   worker02.ocp4.igotit.co.kr   <none>           <none>
-openshift-ingress                                  router-default-585b68dccd-l57nx                                   1/1     Running        0          65s     192.168.1.171   worker01.ocp4.igotit.co.kr   <none>           <none> ```
+openshift-ingress                                  router-default-585b68dccd-l57nx                                   1/1     Running        0          65s     192.168.1.171   worker01.ocp4.igotit.co.kr   <none>           <none> 
+```
 
 ### after 
 
