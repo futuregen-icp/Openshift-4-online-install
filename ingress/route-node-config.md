@@ -8,7 +8,7 @@
   worker03.ocp4.igotit.co.kr
 
 ### append nodeselect
-oc edit node <<nodename>>
+oc edit node < nodename >
 
 ```
   labels:
