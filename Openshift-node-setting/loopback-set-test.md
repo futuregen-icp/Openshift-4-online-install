@@ -4,15 +4,15 @@
 ## 0. machin config를 사용하기 위해 machin config pool 생성 
 
 현재 노드 구성 
-MAME                        | STATUS  |  ROLES              | AGE    | VERSION
-----------------------------+---------+---------------------+-------+----------
-master01.ocp4.igotit.co.kr  | Ready   | master              | 78d   | v1.18.3+002a51f
-master02.ocp4.igotit.co.kr  | Ready   | master              | 78d   | v1.18.3+002a51f
-master03.ocp4.igotit.co.kr  | Ready   | master              | 78d   | v1.18.3+002a51f
-worker01.ocp4.igotit.co.kr  | Ready   | infra,worker        | 78d   | v1.18.3+002a51f
-worker02.ocp4.igotit.co.kr  | Ready   | infra,worker        | 78d   | v1.18.3+002a51f
-worker03.ocp4.igotit.co.kr  | Ready   | infra,route,worker  | 78d   | v1.18.3+002a51f
-worker04.ocp4.igotit.co.kr  | Ready   | route,worker        | 142m  | v1.18.3+2cf11e2
+|NAME                        | STATUS  |  ROLES              | AGE   | VERSION        | OS    |
+|----------------------------|---------|---------------------|-------|----------------|-------|
+|master01.ocp4.igotit.co.kr  | Ready   | master              | 78d   | v1.18.3+002a51f| rhcos |
+|master02.ocp4.igotit.co.kr  | Ready   | master              | 78d   | v1.18.3+002a51f| rhcos |
+|master03.ocp4.igotit.co.kr  | Ready   | master              | 78d   | v1.18.3+002a51f| rhcos |
+|worker01.ocp4.igotit.co.kr  | Ready   | infra,worker        | 78d   | v1.18.3+002a51f| rhcos |
+|worker02.ocp4.igotit.co.kr  | Ready   | infra,worker        | 78d   | v1.18.3+002a51f| rhcos |
+|worker03.ocp4.igotit.co.kr  | Ready   | infra,route,worker  | 78d   | v1.18.3+002a51f| rhcos |
+|worker04.ocp4.igotit.co.kr  | Ready   | route,worker        | 142m  | v1.18.3+2cf11e2| rhel  |
 
 
 ```
