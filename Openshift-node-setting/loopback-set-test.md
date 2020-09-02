@@ -146,3 +146,20 @@ spec:
   osImageURL: ""
 EOF
 ```
+
+### rhcos, rhel 모두 잘되는 것으로 확인 
+```
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet 192.168.1.175/32 scope global lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+
+```
+
+## 의문 
+> 재부팅시에는 문제되니 않지만 <br>
+> 네크워크가 재시작되면 ?
