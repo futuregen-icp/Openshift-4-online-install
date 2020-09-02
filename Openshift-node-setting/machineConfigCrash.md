@@ -48,3 +48,43 @@ Annotations:
                     machineconfiguration.openshift.io/state: Done
 ```                    
 
+### 진단 방법 
+** machine config operater 정보 수집 **
+
+```
+# oc describe clusteroperator machine-config
+# oc describe machineconfig -n openshift-machine-config-operator
+# oc get machineconfigpool -n openshift-machine-config-operator
+# oc describe machineconfigpool the-failing-pool -n openshift-machine-config-operator
+# oc describe node
+```
+
+** 로그 수짐 **
+
+```
+# for POD in $(oc get po -l k8s-app=machine-config-daemon -o name | awk -F '/' '{print $2 }'); do oc logs $POD > $POD.log; done
+
+namespaces/openshift-machine-config-operator/pods/machine-config-daemon-lrcsq/machine-config-daemon/machine-config-daemon/logs/current.log:2020-04-06T21:09:14.588375761-04:00 E0407 01:09:14.588272 3997140 writer.go:130] Marking Degraded due to: machineconfig.machineconfiguration.openshift.io "rendered-test-$[ID]" not found
+```
+
+** 'currentConfig'및 'desiredConfig' 확인 **
+
+```
+The following will describe a working example
+$ oc describe node master-0.test.com | grep -i config
+                    machineconfiguration.openshift.io/currentConfig: rendered-master-e92fca201accd77ecd32d72796a959a4
+                    machineconfiguration.openshift.io/desiredConfig: rendered-master-e92fca201accd77ecd32d72796a959a4
+
+The following would describe the issue faced on this solution, as currentConfig is not the same as desiredConfig:
+$ oc describe node master-0.test.com | grep -i config
+                    machineconfiguration.openshift.io/currentConfig: rendered-master-asd3451243ggs4543ecd3265754g49a
+                    machineconfiguration.openshift.io/desiredConfig: rendered-master-e92fca201accd77ecd32d72796a959a4
+
+-------------------------------------------------------------------------------
+                    
+curl -kv https://localhost:22623/config/$nameMCP
+
+I0417 13:20:37.448036       1 api.go:97] Pool server requested by [::1]:32916
+E0417 13:20:37.451292       1 api.go:103] couldn't get config for req: {server}, error: could not fetch pool. err: machineconfigpools.machineconfiguration.openshift.io "$nameMCP" not found
+
+```
