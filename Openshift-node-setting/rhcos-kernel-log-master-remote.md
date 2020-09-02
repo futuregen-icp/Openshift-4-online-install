@@ -42,3 +42,27 @@ spec:
           name: coreos-kernel-log.service
   osImageURL: ""
 ```
+
+## rhel에서 rsyslog 이용
+
+```
+/etc/rsyslog.conf 에 아래 내용 추가 
+*.crit @bastion.ocp4.igotit.co.kr
+
+```
+
+## rhel에서 rsyslog 이용하여 로그 수집서버 구성
+
+> 주석을 제거하여 수집서버 구성 <br>
+> 현제는 udp 포트를 이용한 서버 구성 <br>
+> tcp 서버를 구성하면  ncat의 -u 옵션 제거 해야함
+
+```
+# Provides UDP syslog reception
+$ModLoad imudp
+$UDPServerRun 514
+
+# Provides TCP syslog reception
+#$ModLoad imtcp
+#$InputTCPServerRun 514
+```
