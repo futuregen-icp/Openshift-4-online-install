@@ -59,7 +59,7 @@ Annotations:
 # oc describe node
 ```
 
-** 로그 수짐 **
+** 로그 수집 **
 
 ```
 # for POD in $(oc get po -l k8s-app=machine-config-daemon -o name | awk -F '/' '{print $2 }'); do oc logs $POD > $POD.log; done
