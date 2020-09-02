@@ -141,8 +141,8 @@ spec:
             RestartSec=10
             [Install]
             WantedBy=multi-user.target
-        enabled: true
-        name: loopbackAdd.service
+          enabled: true
+          name: loopbackAdd.service
   osImageURL: ""
 EOF
 ```
