@@ -160,6 +160,19 @@ EOF
 
 ```
 
-## 의문 
-> 재부팅시에는 문제되니 않지만 <br>
-> 네크워크가 재시작되면 ?
+## nmcli로 dummy interfaces 생성후 사용 방법
+해당 방법으로 진행 할 경우 ansible을 이용하여 route node에  dummy interfaces 설정 할 것 
+보통 ipv4 활정화  ipv6 비활성화 하여 사용함으로  특수한 경우가 아니면 b) 번으로 작업 
+
+```
+a) dummy0 with IPv4 or IPv6 turned off
+# nmcli con add type dummy ifname dummy0 ipv4.method disabled ipv6.method ignore
+
+b) dummy named eth9 with static IPv4 only
+# nmcli con add type dummy ifname eth9 ipv4.method manual ipv4.addresses 192.168.0.100/24 ipv6.method ignore
+
+c) dummy named eth9 with static IPv6 only
+# nmcli con add type dummy ifname eth9 ipv4.method disabled ipv6.method manual ipv6.addresses 2001:DB8::100/32
+```
+
+
