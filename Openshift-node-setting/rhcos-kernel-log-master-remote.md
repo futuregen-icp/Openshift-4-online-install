@@ -66,3 +66,73 @@ $UDPServerRun 514
 #$ModLoad imtcp
 #$InputTCPServerRun 514
 ```
+
+##  Configuring log forwarding using the Log Forwarding API
+> fluentd만 생성하고 log forwarding API 이용한  log forwarding
+
+#### 1, ClusterLogging CR 생성
+>Administration → Custom Resource Definitions
+>Custom Resource Definitions 에서, ClusterLogging 클릭.
+>Custom Resource Definition Overview 에서, Actions 에서 View Instances 선택 및 클릭.
+>ClusterLoggings에서 ,Create ClusterLogging 클릭.
+>yaml 파일 편집
+```
+apiVersion: "logging.openshift.io/v1"
+kind: "ClusterLogging"
+metadata:
+  name: "instance"
+  namespace: "openshift-logging"
+spec:
+  managementState: "Managed"
+  collection:
+    logs:
+      type: "fluentd"
+      fluentd: {}
+
+oc create -f createcr.yaml
+```
+#### 2, Enable Log Forwarding API
+```
+oc edit ClusterLogging instance
+
+apiVersion: "logging.openshift.io/v1"
+kind: "ClusterLogging"
+metadata:
+  annotations:
+    clusterlogging.openshift.io/logforwardingtechpreview: enabled  #<<-- add lien
+  name: "instance"
+  namespace: "openshift-logging"
+spec:
+```
+
+
+#### 3, Enable Log Forwarding API
+```
+apiVersion: "logging.openshift.io/v1alpha1"
+kind: "LogForwarding"
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  disableDefaultForwarding: true
+  outputs:
+   - name: secureforward-offcluster
+     type: "forward"
+     endpoint: registry.ocp44.fu.com:514
+     insecure: true
+  pipelines:
+   - name: container-logs
+     inputSource: logs.app
+     outputRefs:
+     - secureforward-offcluster
+   - name: infra-logs
+     inputSource: logs.infra
+     outputRefs:
+     - secureforward-offcluster
+   - name: audit-logs
+     inputSource: logs.audit
+     outputRefs:
+     - secureforward-offcluster
+
+oc create -f createLFCR.yaml
+```
