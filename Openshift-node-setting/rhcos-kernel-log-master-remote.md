@@ -106,7 +106,7 @@ spec:
 ```
 
 
-#### 3, Enable Log Forwarding API
+#### 3, create instance for Log Forwarding
 ```
 apiVersion: "logging.openshift.io/v1alpha1"
 kind: "LogForwarding"
