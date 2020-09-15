@@ -106,7 +106,7 @@ spec:
 ```
 
 
-#### 3, create instance for Log Forwarding
+#### 3, Create Instance for Log Forwarding
 ```
 apiVersion: "logging.openshift.io/v1alpha1"
 kind: "LogForwarding"
@@ -117,7 +117,7 @@ spec:
   disableDefaultForwarding: true
   outputs:
    - name: secureforward-offcluster
-     type: "forward"
+     type: "syslog"
      endpoint: registry.ocp44.fu.com:514
      insecure: true
   pipelines:
