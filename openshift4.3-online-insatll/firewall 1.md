@@ -1,6 +1,6 @@
 # firewall 설정(필수)
 
-firewall-cmd --permanent --zone=public --add-service=ftp
+    firewall-cmd --permanent --zone=public --add-service=ftp
     firewall-cmd --permanent --zone=public --add-service=dns
     firewall-cmd --permanent --zone=public --add-service=tftp
     firewall-cmd --permanent --zone=public --add-service=ssh
