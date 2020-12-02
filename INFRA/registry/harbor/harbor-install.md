@@ -119,6 +119,13 @@ CentOS 7.x or RHEL 7.x
 	cp -Rp image.test.fu.igotit.co.kr.key /etc/containers/certs.d/image.test.fu.igotit.co.kr/
 
 
+### kernel parameter
+
+	echo 512 >  /proc/sys/net/core/somaxconn
+	sysctl vm.overcommit_memory=1
+	echo never > /sys/kernel/mm/transparent_hugepage/enabled
+
+
 ### 설정 파일 수정 
 
 **harbor.yml파일에서 아래항목을 서버 상항에 맞게 수정** 
