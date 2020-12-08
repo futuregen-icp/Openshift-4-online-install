@@ -1,5 +1,58 @@
 # haproxy  
 
+## Overview
+
+### haproxy의 기능 
+
+```
+TCP proxy
+
+HTTP rerverse-proxy 
+
+SSL terminator / initiator / offloade :  클라이언트에서 오가는 연결, 서버로 가는 연결, SNI 등 관련 설정 
+
+HTTP normalizer :  HTTP 트래픽만 처리하도록 설정하는 경우 적용 가능 ,
+
+HTTP fixing tool 
+
+Content-based switch
+
+Server load balancer : TCP, HTTP 연결에 대한 부하분산 
+
+Traffic regulator : 다양한 지점에 대한 트래픽 비율 조절 
+
+protection against DDoS and service abuse
+
+observation point for network troubleshooting
+
+HTTP compression offloader  
+
+caching proxy : RAM cashing
+
+FastCGI gateway 
+```
+
+
+
+### hapoxy 에서 사용할 수 없는 기능
+
+```
+기본 proxy  기능 
+a data scrubber : 데이터 수정 불가 
+웹서버 기능
+패킷 베이스 로드밸런스  (DSR, UDP 등의 로드벌런스)
+```
+
+
+
+## ACL 기반의  분기 및 로드벨런스 구성 
+
+아래의 예시 처럼 ACL 기반으로   frontend와 backend의 연결을 지정
+
+ 
+
+
+
 ## 설치 방법 
 
 ### CentOS, RHEL
@@ -9,13 +62,13 @@
 ## 운영 방식
 
 	systemctl enable haproxy 
-
+	
 	systemctl start haproxy
 	systemctl stop haproxy   
 
 
 ### 설정 예제 
-  
+
 	파일 명 : 	/etc/haproxy/haprsoxy.cfg
 
 
@@ -44,7 +97,7 @@
 	
 	    # turn on stats unix socket
 	    stats socket /var/lib/haproxy/stats
-	
+
 
 	defaults
 	    mode                    http
@@ -63,9 +116,9 @@
 	    timeout http-keep-alive 10s
 	    timeout check           10s
 	    maxconn                 3000
-	
 
-	
+
+​	
 	frontend openshift-api-server
 	    bind *:8443
 	    default_backend openshift-api-server
@@ -81,7 +134,7 @@
 	
 	frontend openshift4-api-server
 	    bind *:6443
-    	default_backend openshift4-api-server
+		default_backend openshift4-api-server
 	    mode tcp
 	    option tcplog
 	
@@ -146,8 +199,9 @@
 	    #option tcplog
 	    server infra01 192.168.2.21:80 check
 	    server infra02 192.168.2.22:80 check
-	
-	
+
+
+​	
 	##
 	# balancing for OCP Ingress Secure Port
 	##
@@ -172,8 +226,9 @@
 	    option tcplog
 	    server infra01 192.168.2.21:443 check
 	    server infra02 192.168.2.22:443 check
-	
-	
+
+
+​	
 	backend ocp3-https
 	    balance leastconn
 	    # balance source
