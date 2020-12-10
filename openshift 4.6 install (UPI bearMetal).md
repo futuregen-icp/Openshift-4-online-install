@@ -206,7 +206,7 @@
 
  
 
-### [ignition 파일 Customizing](./INFRA/common/ignition-file-Customizing)
+### [ignition 파일 Customizing](./INFRA/common/ignition-file-Customizing.md)
 
 
 
