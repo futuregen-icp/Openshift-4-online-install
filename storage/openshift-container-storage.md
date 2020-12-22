@@ -253,6 +253,23 @@ pvc-97bf5e4a-0d1d-4df7-afb3-0f94ce4fb802   20Gi       RWO            Delete     
 pvc-99f03522-9b03-4187-9fb3-37c4e48d47ea   100Gi      RWO            Delete           Bound    openshift-logging/elasticsearch-elasticsearch-cdm-wpyscq6o-1                     ocs-storagecluster-ceph-rbd            3h51m
 pvc-9b1fee7f-3dd6-4912-b8e0-4eba06222863   100Gi      RWO            Delete           Bound    openshift-logging/elasticsearch-elasticsearch-cdm-wpyscq6o-2                     ocs-storagecluster-ceph-rbd            3h51m
 pvc-d3631814-75dd-470b-9742-6cf4a788315f   20Gi       RWO            Delete           Bound    openshift-storage/alertmanager-main-db-alertmanager-main-1-noobaa-pvc-aa6be5df   ocs-storagecluster-ceph-rbd            5h29m
+```
 
+
+
+**PVC 예제**
+
+```
+[core@bastion monitering]$ oc get pvc -A
+NAMESPACE                  NAME                                                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                  AGE
+openshift-image-registry   image-registry-storage                                         Bound    image-registry-storage                     100Gi      RWX                                          24h
+openshift-logging          elasticsearch-elasticsearch-cdm-wpyscq6o-1                     Bound    pvc-99f03522-9b03-4187-9fb3-37c4e48d47ea   100Gi      RWO            ocs-storagecluster-ceph-rbd   3h59m
+openshift-logging          elasticsearch-elasticsearch-cdm-wpyscq6o-2                     Bound    pvc-9b1fee7f-3dd6-4912-b8e0-4eba06222863   100Gi      RWO            ocs-storagecluster-ceph-rbd   3h59m
+openshift-storage          alertmanager-main-db-alertmanager-main-1-noobaa-pvc-aa6be5df   Bound    pvc-d3631814-75dd-470b-9742-6cf4a788315f   20Gi       RWO            ocs-storagecluster-ceph-rbd   5h37m
+openshift-storage          alertmanager-main-db-alertmanager-main-2-noobaa-pvc-3590408a   Bound    pvc-97bf5e4a-0d1d-4df7-afb3-0f94ce4fb802   20Gi       RWO            ocs-storagecluster-ceph-rbd   5h37m
+openshift-storage          db-noobaa-db-0                                                 Bound    pvc-47b361d8-3f4e-44ee-b82f-34c4bde62c0e   50Gi       RWO            ocs-storagecluster-ceph-rbd   7h4m
+openshift-storage          ocs-deviceset-osc-local-sc-0-data-0-djdv2                      Bound    local-pv-b1c79083                          1Ti        RWO            osc-local-sc                  7h4m
+openshift-storage          ocs-deviceset-osc-local-sc-1-data-0-qchz7                      Bound    local-pv-a6c24aed                          1Ti        RWO            osc-local-sc                  7h4m
+openshift-storage          ocs-deviceset-osc-local-sc-2-data-0-pfprm                      Bound    local-pv-726d4466                          1Ti        RWO            osc-local-sc                  7h4m
 ```
 
