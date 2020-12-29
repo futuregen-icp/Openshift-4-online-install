@@ -1,0 +1,107 @@
+apiVersion: tuned.openshift.io/v1
+kind: Tuned
+metadata:
+  name: custom-tuned-master
+  namespace: openshift-cluster-node-tuning-operator
+spec:
+  profile:
+  - data: |
+      [main]
+      summary=A custom worker profile
+      include=openshift-node
+      [sysctl]
+      net.ipv4.ip_local_port_range="1024 65535"
+      net.ipv4.tcp_tw_reuse=1
+      net.ipv4.tcp_fin_timeout=15
+      net.ipv4.tcp_syncookies=0
+      net.netfilter.nf_conntrack_max=1048576
+      vm.max_map_count=262144
+      net.core.somaxconn=2048
+      vm.vfs_cache_pressure=10000
+    name: custom-tuned-master
+  recommend:
+  - match:
+    - label: node-role.kubernetes.io/master
+    priority: 10
+    profile: custom-tuned-master
+---
+apiVersion: tuned.openshift.io/v1
+kind: Tuned
+metadata:
+  name: custom-tuned-routerint
+  namespace: openshift-cluster-node-tuning-operator
+spec:
+  profile:
+  - data: |
+      [main]
+      summary=A custom worker profile
+      include=openshift-node
+      [sysctl]
+      net.ipv4.ip_local_port_range="1024 65535"
+      net.ipv4.tcp_tw_reuse=1
+      net.ipv4.tcp_fin_timeout=15
+      net.ipv4.tcp_syncookies=0
+      net.netfilter.nf_conntrack_max=1048576
+      vm.max_map_count=262144
+      net.core.somaxconn=2048
+      vm.vfs_cache_pressure=10000
+    name: custom-tuned-routerint
+  recommend:
+  - match:
+    - label: node-role.kubernetes.io/routerint
+    priority: 10
+    profile: custom-tuned-routerint
+---
+apiVersion: tuned.openshift.io/v1
+kind: Tuned
+metadata:
+  name: custom-tuned-routerpub
+  namespace: openshift-cluster-node-tuning-operator
+spec:
+  profile:
+  - data: |
+      [main]
+      summary=A custom worker profile
+      include=openshift-node
+      [sysctl]
+      net.ipv4.ip_local_port_range="1024 65535"
+      net.ipv4.tcp_tw_reuse=1
+      net.ipv4.tcp_fin_timeout=15
+      net.ipv4.tcp_syncookies=0
+      net.netfilter.nf_conntrack_max=1048576
+      vm.max_map_count=262144
+      net.core.somaxconn=2048
+      vm.vfs_cache_pressure=10000
+    name: custom-tuned-routerpub
+  recommend:
+  - match:
+    - label: node-role.kubernetes.io/routerpub
+    priority: 10
+    profile: custom-tuned-routerpub
+---
+apiVersion: tuned.openshift.io/v1
+kind: Tuned
+metadata:
+  name: custom-tuned-infra
+  namespace: openshift-cluster-node-tuning-operator
+spec:
+  profile:
+  - data: |
+      [main]
+      summary=A custom worker profile
+      include=openshift-node
+      [sysctl]
+      net.ipv4.ip_local_port_range="1024 65535"
+      net.ipv4.tcp_tw_reuse=1
+      net.ipv4.tcp_fin_timeout=15
+      net.ipv4.tcp_syncookies=0
+      net.netfilter.nf_conntrack_max=1048576
+      vm.max_map_count=262144
+      net.core.somaxconn=2048
+      vm.vfs_cache_pressure=10000
+    name: custom-tuned-infra
+  recommend:
+  - match:
+    - label: node-role.kubernetes.io/infra
+    priority: 10
+    profile: custom-tuned-infra
