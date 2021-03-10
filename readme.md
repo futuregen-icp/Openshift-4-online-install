@@ -1,4 +1,4 @@
-# openshift 4.6 install guide 
+# openshift 4.6 Online install guide 
 
   ## Environments
 - Bastion : Rhel 8
@@ -16,7 +16,7 @@
   - l2-42-infra2 | 172.10.20.42 | infra 2
   - l2-51-ad1 | 172.10.20.51 | Active Directory
 
-## Install Packages 
+## Install Packages on bastion server.
 ``` 
 yum install -y vim jq httpd-tools podman skopeo
 ```
