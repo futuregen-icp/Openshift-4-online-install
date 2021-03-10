@@ -1,4 +1,4 @@
-# openshift 4.6 Online install guide 
+# Openshift 4.6 online install guide 
 
   ## Environments
 - Bastion : Rhel 8
