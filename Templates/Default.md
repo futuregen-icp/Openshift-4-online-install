@@ -1,7 +1,7 @@
-## Template Managements
+## Template Management
 
 
-- Backup templates to yaml files
+- Backup default templates to yaml files
 
   + Template lists to file
 `oc get template -n openshift | awk '{print $1}' > list.txt`
