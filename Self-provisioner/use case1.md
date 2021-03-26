@@ -37,5 +37,5 @@ oc patch clusterrolebinding.rbac self-provisioners -p '{"subjects": null}'
 
 [{"apiGroup": "rbac.authorization.k8s.io","kind": "Group","name": "system:authenticated:oauth"}]
 
-oc patch clusterrolebinding.rbac self-provisioners -p '{"subjec
+c patch clusterrolebinding.rbac self-provisioners -p '{"subjects": [{"apiGroup": "rbac.authorization.k8s.io","kind": "Group","name": "system:authenticated:oauth"}]}'
 ```
