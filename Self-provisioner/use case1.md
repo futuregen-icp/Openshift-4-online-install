@@ -27,3 +27,15 @@ oc create secret generic htpass-secret --from-file=/opt/ocp4/install-20210309/oa
 oc adm policy     add-cluster-role-to-group self-provisioner     system:authenticated:oauth
 oc patch clusterrolebinding.rbac self-provisioners -p '{ "metadata": { "annotations": { "rbac.authorization.kubernetes.io/autoupdate": "true" } } }'
 ```
+
+- remark
+```
+"subjects": [{"apiGroup": "rbac.authorization.k8s.io","kind": "Group","name": "system:authenticated:oauth"}]
+
+oc patch clusterrolebinding.rbac self-provisioners -p '{"subjects": null}'
+
+
+[{"apiGroup": "rbac.authorization.k8s.io","kind": "Group","name": "system:authenticated:oauth"}]
+
+oc patch clusterrolebinding.rbac self-provisioners -p '{"subjec
+```
