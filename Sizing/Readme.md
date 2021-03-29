@@ -2,7 +2,7 @@
 
 - Pods sizing example 1
 
-| 업무그룹 | 업무단위      | 비율   | Native (MB) | | THREAD STACK | dbcp | Application (MB) | 합계   | 비고   |
+| 업무그룹 | 업무단위      | 비율   | Native (MB) | | THREAD STACK | dbcp | Application (MB) | | 합계   | 비고   |
 | ---- | --------- | ---- | ----------- | ---- | ------------ | ---- | ---------------- | ---- | ---- | 
 | | | | OS   | JBOSS ENG | heap | war         |
 | 상품관리 | 상품제휴      | 25%  | 500         | 1536         | 100  | 77               | 1024 | 500  | 3737 |  |
