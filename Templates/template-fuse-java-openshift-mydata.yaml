@@ -1,0 +1,280 @@
+
+```
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: fuse-java-openshift-mydata
+metadata:
+  annotations:
+    description: Spring Boot and Camel Xml. This mydata's example demonstrates how you can use Apache Camel with Spring Boot on Openshift.
+    iconClass: icon-rh-integration
+    openshift.io/display-name: Red Hat Fuse 7.7 mydata hostpath
+    openshift.io/provider-display-name: Red Hat, Inc.
+    tags: quickstart,java,springboot,fis,jboss-fuse
+    version: "1.7"
+  name: fuse-java-openshift-mydata
+  namespace: openshift
+objects:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: The web server's http port.
+    labels:
+      app: ${APP_NAME}
+      component: ${APP_NAME}
+      provider: s2i
+      version: ${APP_NAME}
+    name: ${APP_NAME}
+  spec:
+    ports:
+    - port: 8080
+      targetPort: 8080
+    selector:
+      deploymentconfig: ${APP_NAME}
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: ${APP_NAME}
+      component: #{APP_NAME}
+      provider: s2i
+      version: ${APP_VERSION}
+    name: ${APP_NAME}
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    creationTimestamp: null
+    labels:
+      app: ${APP_NAME}
+      component: ${APP_NAME}
+      provider: s2i
+      version: ${APP_VERSION}
+    name: ${APP_NAME}
+  spec:
+    output:
+      kind: ImageStreamTag
+      name: ${APP_NAME}:latest
+    resources:
+      limits:
+        memory: ${BUILD_MEMORY_LIMIT}
+      requsts:
+        memory: ${BUILD_MEMORY_REQUEST}
+    source:
+      git:
+        ref: ${GIT_REF}
+        uri: ${GIT_REPO}
+      type: Git
+    strategy:
+      sourceStrategy:
+        env:
+        - name: BUILD_LOGLEVEL
+          value: "5"
+        - name: ARTIFACT_DIR
+          value: ${ARTIFACT_DIR}
+        - name: MAVEN_ARGS
+          value: ${MAVEN_ARGS}
+        - name: MAVEN_ARGS_APPEND
+          value: ${MAVEN_ARGS_APPEND}
+        - name: MAVEN_CLEAR_REPO
+          value: "true"
+        - name: MAVEN_MIRROR_URL
+          value: ${MAVEN_MIRROR_URL}
+        forcePull: true
+        from:
+          kind: ImageStreamTag
+          name: fuse-java-openshift-mydata:1.0
+          namespace: ${IMAGE_STREAM_NAMESPACE}
+        incremental: false
+      type: Source
+    triggers:
+    - github:
+        secret: ${BUILD_SECRET}
+      type: Gitbub
+    - generic:
+        secret: ${BUILD_SECRET}
+      type: Generic
+    - type: ConfigChange
+      imageChange: {}
+      type: ImageChange
+- apiVersion: v1
+  kind: DeployentConfig
+  metadata:
+    labels:
+      app: ${APP_NAME}
+      component: ${APP_NAME}
+      provider: s2i
+      version: ${APP_VERSION}
+    name: ${APP_NAME}
+  spec:
+    replicas: 1
+    selector:
+      app: ${APP_NAME}
+      component: ${APP_NAME}
+      deploymentconfig: ${APP_NAME}
+      provider: s2i
+      version: ${APP_VERSION}
+    template:
+      metadata:
+        labels:
+          app: ${APP_NAME}
+          component: ${APP_NAME}
+          deploymentconfig: ${APP_NANE}
+          provider: s2i
+          version: ${APP_VERSION}
+      spec:
+        containers:
+        - env:
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: TZ
+            value: Asia/Seoul
+          - name: LANG
+            value: ko_KR.UTF-8
+          - name: OS_APP_ID
+            value: ${OS_APP_ID}
+          - name: JAVA_MAX_MEM_RATIO
+            value: ${JAVA_MAX_MEM_RATIO}
+          - name: JAVA_INIT_MEM_RATIO
+            value: ${JAVA_INIT_MEM_RATIS}
+          - name: LD_LIBRARY_PATH
+            value: ${LD_LIBRARY_PATH}
+          - name: JEN_SERVER_IP
+            value: ${JEN_SERVER_IP}
+          - name: JEN_SERVER_PORT
+            value: ${JEN_SERVER_PORT}
+          - name: JEN_DOMAIN_ID
+            value: ${JEN_DOMAIN_ID}
+          - name: ET_HSM_NETCLIENT_SERVERLIST
+            value: ${ET_HSM_NETCLIENT_SERVERLIST}
+          - name: ET_HSM_NETCLIENT_HEARBEAT
+            value: ${ET_HSM_NETCLIENT_HEARBEAT}
+          - name: ET_HSM_NETCLIENT_READ_TIMEOUT_SECS
+            value: ${ET_HSM_NETCLIENT_READ_TIMEOUT_SECS}
+          - name: ET_HSM_NETCLIENT_WRITE_TIMEOUT_SECS
+            value: ${ET_HSM_NETCLIENT_WRITE_TIMEOUT_SECS}
+          - name: ET_HSM_NETCLIENT_CONNECT_TIMEOUT_SECS
+            value: ${ET_HSM_NETCLIENT_CONNECT_TIMEOUT_SECS}
+          image: library/${APP_NAME}:latest
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            initialDelaySeconds: 180
+          name: ${APP_NAME}
+          ports:
+          - containerPort: 8778
+            name: jolokia
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            initialDelaySeconds: 10
+          resources:
+            limits:
+              cpu: ${CPU_LIMIT}
+              memory: ${MEMORY_LIMIT}
+            requests:
+              cpu: ${CPU_REQUEST}
+              memory: ${MEMORY_REQUEST}
+          volumemounts:
+          - mountPath: /logs
+            name: ${APP_NAME}-log-volume
+        nodeSelector:
+          kubernetes.io/hostname: dmydtmp02.dev.mydpas.cloud
+        volumes:
+        - name: ${APP_NAME}-log-volume
+          persistentVolumeClaim:
+            claimName: ${APP_NAME}-log-claim
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+      automatic: true
+      containerNames:
+      - ${APP_NAME}
+      from:
+        kind: ImageStreamTag
+        name: ${APP_NAME}:latest
+      type: ImageChange
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    labels:
+      app: ${APP_NAME}
+    name: ${APP_NAME}-log-claim
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: ${LOG_VOLUME_CAMPACITY}
+    selector:
+      matchLabels:
+        storage-source: ${APPLICATION_DIVISION}-${APP_NAME}-log
+        storage-type: hostpath
+parameters:
+- description: 'Project Name (e.g.: project name)'
+  displayName: Application Division
+  name: APPLICATION_DIVISION
+  required: true
+  value: dmy
+- description: The name assigned to the application.
+  displayName: Application Name
+  name: APP_NAME
+  required: true
+  value: dmyd-myin
+- description: The URL of the repository with your application source code.
+  displayName: Git Repository URL
+  name: GIT_REPO
+  required: true
+  value: http://gogs.apps.dev.mydpas.cloud/PJ01921/fuse-kcredit-3scal-demo.git
+- description: Set this th a branch name, tag or other ref of your repository if you are not using the default branch.
+  displayName: Git Reference
+  name: GIT_REF
+  value: master
+- description: The application version.
+  displayName: Application Version
+  name: APP_VERSION
+  value: 1.0.0.fuse-770010-redhat-0003
+- description: Arguments passed to mvn in the build.
+  displayName: Maven Arguments
+  name: MAVEN_ARGS
+  value: package -DskipTests -Dfabric8.skip -e -B
+- description: Extra arguments passed to mvn, e.g. for multi-module builds.
+  displayName: Extra Maven Arguments
+  name: MAVEN_ARGS_APPEND
+- description: Maven mirror to use for S2I builds.
+  displayName: Maven mirror URL
+  name: MAVEN_MIRROR_URL
+  value: http://10.25.58.144:8081/repository/maven-public/
+- description: Directory of the artifact to be built, e.g. for multi-module builds.
+  displayName: Maven build directory
+  name: ARTIFACT_DIR
+- description: Size of persistent storage for volume.
+  displayName: LOG_VOLUME_CAPACITY
+  required: true
+  value: 1Gi
+- description: 'Environment Type (e.g. : D or T)'
+  displayName: Environment Type
+  name: ENV_TYPE
+  required: true
+- description: 'e.g.: the default value 50 implies that 50% of the Memory given to the container is used as the initial heap memory with -Xmx.'
+  displayName: Container Heap Percent
+  name: JAVA_MAX_MEM_RATIO
+  value: "50"
+- description: 'e.g.: the default value 50 implies that 50% of the Memory given to the container is used as the initail heap memory with -Xms.'
+  displayName: JAVA_INIT_MEM_RATIO
+  value: "50"
+- description: 'log path (e.g.: myd-dap)'
+  displayName: OS APP ID
+  name: OS_APP_ID
+  required: true
+  value: myd-dmy
+- des
+
+```

@@ -1,0 +1,56 @@
+install-config.yaml
+---------------
+apiVersion: v1
+baseDomain: icsfuturegen.de
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  platform:
+    aws:
+      zones:
+      - ap-northeast-2b
+      rootVolume:
+        iops: 4000
+        size: 500
+        type: io1 
+      type: m5.xlarge
+  replicas: 3
+compute:
+- hyperthreading: Enabled
+  name: worker
+  platform:
+    aws:
+      type: c5.4xlarge
+      rootVolume:
+        iops: 4000
+        size: 500
+        type: io1 
+      zones:
+      - ap-northeast-2b
+  replicas: 3
+metadata:
+  name: test-cluster
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/16
+    hostPrefix:  23
+  machineNetwork:
+  - cidr: 10.0.0.0/19
+  networkType: OpenShiftSDN
+  serviceNetwork:
+  - 172.31.0.0/16
+platform:
+  aws:
+    region: ap-northeast-2
+    subnets:
+    - subnet-06d5b1b642fea342e
+    - subnet-0a7b1cc29b055489d
+pullSecret: '{"auths":{"cloud.openshift.com":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K3JobnN1cHBvcnRoeW91MXNhOW9md2d2cTVzNnpiZWc1cHBwMzNzdnBuOlZERUpCT01GSkNXUUcySk0yWEFGNDJYS0NXUUpXOUVPV1o4MTI3Nk45UElVT0YzUVRLU1hPTUEwMVMySUpXWEQ=","email":"hyou@redhat.com"},"quay.io":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K3JobnN1cHBvcnRoeW91MXNhOW9md2d2cTVzNnpiZWc1cHBwMzNzdnBuOlZERUpCT01GSkNXUUcySk0yWEFGNDJYS0NXUUpXOUVPV1o4MTI3Nk45UElVT0YzUVRLU1hPTUEwMVMySUpXWEQ=","email":"hyou@redhat.com"},"registry.connect.redhat.com":{"auth":"NTI4MzgyMTF8dWhjLTFTYTlPRldHdlE1czZ6YkVnNVBwcDMzU1ZQTjpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSTBZek5sTVRJMFpUQmpZbU0wTWpKbFlUSXhObVkyT1dNMk1qQTROR1EyWWlKOS5vVEtoLXh3dUVtTUx1by12T0NmTHRwbkprQlBTVm1xdUtZUERYT3lndXdmMHVfWU1VTWlhcDU5bzR5LVFhYmthUl9JVThWaTFqeHo0QmpTOXFiNGk4S2NNYzVDb0c4SDJiY0VnV0JWNDFXcTNScGhfSzA1WmdPWDRhaFJRU1NIN2NGYUt5d3l0eW9LWU9tREVZTkZybGdrZjhpUnF3ZjN0WnpFYTU3dWdOTTQ1ajZYUzlqZHhYR2Jab2pGWGdsUHZ5T1pHMjI3eHZoMkR6bk5WdmYwMVE3MXBlcV9aU3VEYmpYYkFKQ3E3LURIMnhaYkMzZXBMOHBnN1R4ZDlrSFZuek9WSHJtRnQzUDVyeEVQTHhEcUlpQVlUQmE5LXJwOWpwdHl5a1VoYW1vbEhSYW50MkhEZ0Vac0lidDVjcFg4YTEtYVNsT2NaQUF2R1FRam1ZV1FDTzRZRFhpWXlINUNVMWY1ZnFiUkxva0NpeXUtVHNDTE9TdU9qRnN6Z3VYbzIzaU5QUVlDMmtfWWFJWENBa1VVYnVIQm5LcUhPQXVsa1NvRk1uanlzU0l6SmZWMXdvcFpMM050bFVSVnlsek5fbVJpWVJJcmxlZHRCN01Vdy1Tb2drMlpSLXUyREFHTEIxSmd6ZFQteF9qZnRpWVpZc0lETUk2VWlGb0J3ZjVLaWZycXVTYklqUWRPdC01MEw5VjQ3ZGZ6M3pxcDd0OUNfSEFzLTZBbVNvVHdETW9McWJVTW5VejlHbVdEdk15eHlCZ1U5NTlUX2RaTmhKV3pQUHlRR2JuME9heXRxNEpnYjBVc3JEdTItY2RwanBLQ2NmRnZBal93RE9odlkxYkVNSDlXWkR4WThyY3NVcGJ2MGhLNjJrYUctN0p6RGdVQjFuZGRWOWYyYmVHaw==","email":"hyou@redhat.com"},"registry.redhat.io":{"auth":"NTI4MzgyMTF8dWhjLTFTYTlPRldHdlE1czZ6YkVnNVBwcDMzU1ZQTjpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSTBZek5sTVRJMFpUQmpZbU0wTWpKbFlUSXhObVkyT1dNMk1qQTROR1EyWWlKOS5vVEtoLXh3dUVtTUx1by12T0NmTHRwbkprQlBTVm1xdUtZUERYT3lndXdmMHVfWU1VTWlhcDU5bzR5LVFhYmthUl9JVThWaTFqeHo0QmpTOXFiNGk4S2NNYzVDb0c4SDJiY0VnV0JWNDFXcTNScGhfSzA1WmdPWDRhaFJRU1NIN2NGYUt5d3l0eW9LWU9tREVZTkZybGdrZjhpUnF3ZjN0WnpFYTU3dWdOTTQ1ajZYUzlqZHhYR2Jab2pGWGdsUHZ5T1pHMjI3eHZoMkR6bk5WdmYwMVE3MXBlcV9aU3VEYmpYYkFKQ3E3LURIMnhaYkMzZXBMOHBnN1R4ZDlrSFZuek9WSHJtRnQzUDVyeEVQTHhEcUlpQVlUQmE5LXJwOWpwdHl5a1VoYW1vbEhSYW50MkhEZ0Vac0lidDVjcFg4YTEtYVNsT2NaQUF2R1FRam1ZV1FDTzRZRFhpWXlINUNVMWY1ZnFiUkxva0NpeXUtVHNDTE9TdU9qRnN6Z3VYbzIzaU5QUVlDMmtfWWFJWENBa1VVYnVIQm5LcUhPQXVsa1NvRk1uanlzU0l6SmZWMXdvcFpMM050bFVSVnlsek5fbVJpWVJJcmxlZHRCN01Vdy1Tb2drMlpSLXUyREFHTEIxSmd6ZFQteF9qZnRpWVpZc0lETUk2VWlGb0J3ZjVLaWZycXVTYklqUWRPdC01MEw5VjQ3ZGZ6M3pxcDd0OUNfSEFzLTZBbVNvVHdETW9McWJVTW5VejlHbVdEdk15eHlCZ1U5NTlUX2RaTmhKV3pQUHlRR2JuME9heXRxNEpnYjBVc3JEdTItY2RwanBLQ2NmRnZBal93RE9odlkxYkVNSDlXWkR4WThyY3NVcGJ2MGhLNjJrYUctN0p6RGdVQjFuZGRWOWYyYmVHaw==","email":"hyou@redhat.com"}}}'
+fips: false
+sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwVAaOtH1lVvM4YDPTwsUycbxnaCJC0/FqI5qLd2ue4t/gAvycD7glD2yg4V07HdWfwx2FIJtUaPfJayid6cZ4/F4UoujdNPfluSttdxFZTEMGjsNIMAbb0Pzz+PR1vYYcIP1rG3NktPSQdh/l5KgNQPqiSy29eIyN28fJepTTIG+egdQp2r8SRtTK20+yRyqGoEoXnFIG/IouWSBDOUgooPuSLqHxYqV034zpqUXECI2DzxVtmOrVptmu8vBnMiKmsL2TqFqKDvzTykdpIpPs/7xTK3UyseQ5hGY1ifwq/6w33/DVtPFYyOrfcbN2Wmnpw+p9NilvmU9lnFy9VcEf hyou-redhat.com@clientvm.24b1.internal'
+------------
+주의 사항 
+1, machineNetwork의 대역은 모든 subnet의 대역을 포함해야 한다,vpc대역 그대로 사용해도 된다.
+
+2, aws.rootVolume.iops 사용할수 있는 최대치로 한다, 성능 잇슈로 AUTH pod가 정상 작동 하지 않는 경우 있음
+
