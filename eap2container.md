@@ -1,3 +1,4 @@
+## 20210428 뱅크웨어글로벌 리뷰 요청사항
 ```
 - OCP Template 구성 변경
 기존 git Repository의 프로젝트를 Build하여 Deploy하는 것이 아닌 war 파일이 고정적으로 배포되어 git Repository에서 배포되어야할 리소스는 .par파일
@@ -42,4 +43,14 @@ ex) /deployments/bxmApps/*.par 경로에 git Repository의 .par 파일을 위치
     <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failur:false}" auto-deploy-exploded="false"/>
 </subsystem>
 ----------------------------
+```
+
+## 이형승 이사 코멘트
+```
+authcommit을 false로 수정하는 것도 보인데...
+이거.... 주의해야하고, 반드시 확인을 해야할 것 같아요.
+그리고 xa를 사용하는 것도 이유가 있을 듯 한데, 그 이유를 먼저 확인하고, 수정을 하는게 더 좋을 듯 합니다.
+정말 정말 xa가 필요한지...
+그리고, 요즘 가이드는 connection.setAutoCommit(false); 를 그로그램단에서, 저굥ㅇ하는게 맞을 것 같고,
+우리쪽  모듈을 변경하는 것은 가이드가 아빈디ㅏ.
 ```
