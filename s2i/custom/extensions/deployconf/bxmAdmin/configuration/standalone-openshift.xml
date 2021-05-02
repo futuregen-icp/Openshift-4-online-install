@@ -654,4 +654,9 @@
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
+    <deployments>
+        <deployment name="bmxAdmin" runtime-name="bmxAdmin.war"> 
+            <fs-exploded path="/opt/eap/bmxAdmin/deployments/"/> 
+        </deployment> 
+    </deployments>
 </server>

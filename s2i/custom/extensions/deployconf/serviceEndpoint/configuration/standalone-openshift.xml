@@ -587,4 +587,9 @@
             <remote-destination host="localhost" port="25"/>
         </outbound-socket-binding>
     </socket-binding-group>
+    <deployments>
+        <deployment name="serviceEndpoint" runtime-name="serviceEndpoint.war"> 
+            <fs-exploded path="/opt/eap/serviceEndpoint/deployments/"/> 
+        </deployment> 
+    </deployments>
 </server>
