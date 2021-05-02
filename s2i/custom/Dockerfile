@@ -36,3 +36,28 @@ RUN cd /extensions && ./install.sh /extensions
 
 
 
+assemble
+root@hsyang-pc:~/docker-example/eap64-builder# cat .s2i/bin/assemble
+#!/bin/bash -e
+#
+# S2I assemble script for the 'eap64-builder' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#   https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+if [[ "$1" == "-h" ]]; then
+    # If the 'eap64-builder' assemble script is executed with '-h' flag,
+    # print the usage.
+    exec /usr/local/s2i/usage
+fi
+# Restore artifacts from the previous build (if they exist).
+#
+if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+  echo "---> Restoring build artifacts..."
+  mv /tmp/artifacts/. ./
+fi
+echo "---> Installing application source..."
+cp -Rf /tmp/src/. /sw/jboss/jboss-eap-6.4/standalones/server1/deployments/
+echo "---> Building application from source..."
+# TODO: Add build steps for your application, eg npm install, bundle install
