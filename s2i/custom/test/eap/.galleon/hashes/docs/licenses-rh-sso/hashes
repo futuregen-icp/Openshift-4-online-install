@@ -1,0 +1,48 @@
+org.keycloak,keycloak-adapter-spi,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+licenses.xml
+79e96b002064baf7c29c7985b0ebe6273649bdb4
+org.keycloak,keycloak-wildfly-subsystem,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-saml-wildfly-subsystem,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-jboss-adapter-core,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-core,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+licenses.xsl
+5f5ac213884cc734d4d1272ce4b67791966ebcde
+org.keycloak,keycloak-saml-core-public,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+licenses.html
+96f7ed3ac4179183300cb7fdc991f2b007c42290
+licenses.css
+6b9959d0995cd82e1aa6c9dbd4ec37dda48df6b2
+org.keycloak,keycloak-wildfly-elytron-oidc-adapter,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-saml-wildfly-elytron-adapter,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-saml-adapter-api-public,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-saml-undertow-adapter,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-adapter-core,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-saml-wildfly-adapter,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-common,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-saml-adapter-core,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-authz-client,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-wildfly-adapter,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-undertow-adapter-spi,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-saml-core,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-servlet-oauth-client,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
+org.keycloak,keycloak-undertow-adapter,4.8.7.Final-redhat-00001,Apache Software License 2.0.txt
+05cec7c34d97427588cd521b7b408705986f7685
