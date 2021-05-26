@@ -100,3 +100,41 @@ $ oc create secret generic htpass-secret --from-file=htpasswd=users.htpasswd --d
 ```
 oc delete identity ADMINS:admin_id1
 ```
+
+
+
+
+## 생성 스크립트 
+```
+#!/bin/bash
+
+OCPUSER="admins"
+OCPPASS="dlfmsdkcla"
+OCPIDPF="users.htpasswd"
+OCPIDPN="admons"
+
+htpasswd -c -B -b $OCPIDPF $OCPUSER $OCPPASS
+oc create secret generic ${OCPIDPN}-htpass-secret --from-file=htpasswd=users.htpasswd -n openshift-config
+
+cat <<EOF> ${OCPIDPN}-CR.yaml
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+  - name: ${OCPIDPN}
+    mappingMethod: claim
+    type: HTPasswd
+    htpasswd:
+      fileData:
+        name: ${OCPIDPN}-htpass-secret
+EOF
+
+oc apply -f  ${OCPIDPN}-CR.yaml
+
+
+oc adm policy add-cluster-role-to-user cluster-admin ${OCPIDPN}
+oc adm policy add-role-to-user admin ${OCPIDPN}
+
+```
