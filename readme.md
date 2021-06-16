@@ -29,6 +29,9 @@ yum -y install bind bind-utils
 ## Configure Masquerade
 ```
 firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I POSTROUTING -o eth0 -j MASQUERADE -s 172.10.20.0/24
+firewall-cmd --zone=internal --add-masquerade --permanent
+firewall-cmd --zone=public --add-masquerade --permanent
+
 ```
 
 ## /etc/named.conf
