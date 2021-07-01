@@ -18,7 +18,7 @@ oc adm catalog build --appregistry-org redhat-operators \
 ### catalog mirror
 
 ```
-oc adm catalog mirror bastion.d3c.ebaykorea.com:5000/olm/redhat-operators:v1 \
+oc adm catalog mirror registry.dis.test.fu.igotit.co.kr:5000/olm/redhat-operators:v1 \
 registry.dis.test.fu.igotit.co.kr:5000 -a /root/.docker/config.json
 ```
 
