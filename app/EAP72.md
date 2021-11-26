@@ -75,3 +75,20 @@ JAVA_OPTS="{JAVA_OPTS} -Dorg.jboss.as.logging.per-deployment=false -Dfile.encodi
   source $JBOSS_HOME/bin/launch/oracle-common.sh
 ```
 
+## Remove
+
+# Create eap 7.3 with mysql
+
+## Create key chain and create secret
+```
++ Key chain file : keystore.jks
++ route path : http://eap-app-eap-demo.apps.oss2.fu.igotit.co.kr
+keytool -genkey -keyalg RSA -alias eapdemo-selfsigned -keystore keystore.jks -validity 360 -keysize 2048 #pass: test1234!, created keystore.jks
+oc secrets new SECRET_NAME KEYSTORE_FILENAME.jks
+```
+# install Openjdk 1.8 Because Using keytool.
+```
+# yum install java-1.8.0-openjdk
+# yum install java-1.8.0-openjdk-devel
+```
+
