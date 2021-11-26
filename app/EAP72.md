@@ -92,3 +92,121 @@ oc secrets new SECRET_NAME KEYSTORE_FILENAME.jks
 # yum install java-1.8.0-openjdk-devel
 ```
 
+# Remark
+
+## 빌더로 이미지 만들기 - 기타 솔루션 및 커스텀을 위한 이미지 구성 작업
+
+```
+# cat build_obank_jennifer.sh
+
+#!/bin/sh
+
+buildah build-using-dockerfile --format=docker -t openjdk18-openshift-obank:1.0 .
+podman tag openjdk18-openshift-obank:1.0 dmyoprg01.dev.myopas.cloud:5000/redhat-openjdk-18/openjdk18-openshift-obank:1.0
+podman tag openjdk18-openshift-obank:1.0 dmyoprg01.dev.myopas.cloud:5000/redhat-openjdk-18/openjdk18-openshift-obank:latest
+podman push dmyoprg01.dev.myopas.cloud:5000/redhat-openjdk-18/openjdk18-openshift-obank:1.0
+podman push dmyoprg01.dev.myopas.cloud:5000/redhat-openjdk-18/openjdk18-openshift-obank:latest
+```
+
+## Custom image using Dockerfile for EAP7 image 
+
+```
+# cat Dockerfile
+
+FROM dmybprg01.dev.mybpas.cloud:5000/jboss-eap-7/jbosseap72-jenniferapm:1.0
+
+USER root
+
+ADD packages /opt/packages/
+RUN yum localinstall -y /opt/packages/*
+#RUN localedef -c -f EUC-KR -i ko_KR ko_KR.EUC-KR
+RUN localedef -c -f UTF-8 -i ko_KR ko_KR.UTF-8
+#ENV LANG ko_KR.EUC-KR
+
+RUN mkdir -p /deployments/bxmApps/
+RUN mkdir /data
+ADD jdbc /opt/eap/modules/system/layers/base/com/oracle/jdbc
+ADD safenet2 /opt/eap/modules/system/layers/base/safenet2/
+#ADD innorules /opt/eap/moduls/syste/layers/base/innorules/
+ADD jar /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/policy/unlimited
+ADD jar /usr/lib/jvm/java-1.8.0-openjdk/jre/lib/security/policy/limited/
+ADD safenet /opt/safenet/
+ADD launch /opt/eap/bin/launch/
+ADD jvm /opt/jboss/container/java/jvm
+ADD openshift-launch.sh /opt/eap/bin/
+ADD standalone.conf /opt/eap/bin
+ADD standalong-openshift.xml /opt/eap/standalong/configuration/
+#ADD war /tmp/src/
+#ADD yl-srvc.par /deployments/apps/
+#ADD war/jacorb-2.3.2-redhat-2.jar /deployments/
+
+ADD src/bxm/ /opt/eap/modules/system/layers/base/com/bxm/
+ADD src/bxmspring/ /opt/eap/modules/system/layers/base/com/bxmspring/
+ADD src/bxmengine/ /opt/eap/modules/system/layers/base/com/bxmengine/
+#ADD src/oracle/ /opt/eap/moduls/system/layers/base/com/oracle/
+#ADD src/WEB-INF/ /deployments/WEB-INF/
+
+RUN chown -R jboss:root /opt/eap/modules/system/layers/base/com/oracle && \
+chown -R jboss:root /opt/eap/modules/system/layers/base/safenet2 && \
+chown -R jboss:root /opt/eap/bin/launch && \
+chown -R jboss:root /opt/jboss/container/java/jvm && \
+rm -rf /opt/eap/docs/examples && rm -rf /opt/eap/welcome-content && \
+chown -R jboss:root /opt/safenet
+
+RUN chown jboss:root /opt/eap/bin/openshift-launch.sh && \
+chown jboss:root /opt/eap/bin/standalone.conf && \
+chown jboss:root /opt/eap/standalone/configuration/standalone-openshift.xml
+RUN mkdir dsleetest
+
+USER 185
+CMD ["/opt/eap/bin/openshift-launch.sh"]
+```
+
+## 이미지스트림 
+
+```
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotatinos:
+    openshift.io/display-name: Red Hat OpenJDK 8 - Open Banking
+    openshift.io/provider-display-name: Red Hat, Inc.
+  Name: redhat-openjdk18-openshift-obank
+  namespace: openshift
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+  - annotations:
+      description: Build and run Java applications using Maven and OpenJDK 8.
+      iconClass: icon-rh-openjdk
+      openshift.io/display-name: Red Hat OpenJDK 8 - Open Banking
+      sampleContextDir: undertow-servlet
+      sampleRepo: https://github.com/jboss-openshift/openshift-quicstarts
+      supports: java:8
+      tags: builder,java,openjdk,hidden
+      version: "1.0"
+    from
+      find: DockerImage
+      name: dmyoprg01.dev.myopas.cloud:5000/redhat-openjdk-18/openjdk18-openshift-obank:1.0
+    importPolicy: {}
+    name: "1.0"
+    referencePolicy:
+      type: Local
+  - annotations:
+      description: Build and run Java applicaations using Maven and OpenJDK 8.
+      iconClass: icon-rh-openjdk
+      openshift.io/display-name: Red Hat OpenJDK 9 - Open Banking
+      sampleContextDir: undertow-servlet
+      sampleRepo: https://github.com/jboss-openshift/openshift-quickstarts
+      supports: java:8
+      tags: builder,java,openjdk,hidden
+      version: latest
+    from
+      kind: DockerImage
+      name: dmyoprg01.dev.myopas.cloud:5000/redhat-openjdk-18/openjdk18-openshift-obank:latest
+    importPolicy: {}
+    name: latest
+    referencePolicy:
+      type: Local
+```
