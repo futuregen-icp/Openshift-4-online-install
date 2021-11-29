@@ -49,6 +49,6 @@ spec:
       ca: 
         name: ca-config-map
       insecure: false 
-      url: "ldap://ldap.igotit.co.kr:389/ou=users,dc=ldap,dc=igotit,dc=co,dc=kr?uid"
+      url: "ldap://ldap.igotit.co.kr:389/ou=users,dc=ldap,dc=igotit,dc=co,dc=kr?uid?sub"
 
 ``` 
