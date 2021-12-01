@@ -53,16 +53,18 @@ $ oc delete node infra3.oss2.fu.igotit.co.kr
 ## Delete infra3 node vm
 ## Create lab1-router1 vm
 
-## Create repository
+## Definitions
 ```
-# Definitions
-- VM Name: lab1-repo1
-- Hostname
+- VM Name
+  + lab1-repo1
+  + lab1-router1
+  + lab1-app1
+  + lab1-app2
+- Hostname | IP
   + repo1.oss2.fu.igotit.co.kr | 192.168.5.151
   + router1.oss2.fu.igotit.co.kr | 192.168.5.141
   + app1.oss2.fu.igotit.co.kr | 192.168.5.131
   + app2.oss2.fu.igotit.co.kr | 192.168.5.132
-- IP: 192.168.5.151
 - DNS record
   + repo1   IN  A 192.168.5.151
   + router1		IN	A	192.168.5.141
