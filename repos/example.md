@@ -143,7 +143,7 @@ restorecon -vR /var/www/html
 
 ```
 
-## Example planned storage partition
+## Example planned storage partition for app node
 ```
 /dev/mapper/rootvg-lv_root	5G	/
 /dev/mapper/rootvg-lv_usr	10G	/usr
