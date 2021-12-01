@@ -15,7 +15,7 @@ worker2.oss2.fu.igotit.co.kr   Ready    worker         279d   v1.19.0+1833054
 ## Planned
 - Remove only 3 infra node as infra3.oss2.fu.igotit.co.kr
 - Configure new server for yum repository 
-- Add 1 node as router1
+- Add 1 node as router1 
 - Add 2 node as app1,app2
 - Change haproxy from worker1, worker2 to router1
 - Delete 2 node as worker1, worker2 
