@@ -15,8 +15,7 @@ worker2.oss2.fu.igotit.co.kr   Ready    worker         279d   v1.19.0+1833054
 ## Planned
 - Remove only 3 infra node as infra3.oss2.fu.igotit.co.kr
 - Configure new server for yum repository 
-- Add 1 node as router1 
-- Add 2 node as app1,app2
+- Add 1 node as router1,app1,app2
 - Change haproxy from worker1, worker2 to router1
 - Delete 2 node as worker1, worker2 
 - Add efk node and configure openshift logging feature. 
@@ -58,8 +57,18 @@ $ oc delete node infra3.oss2.fu.igotit.co.kr
 ```
 # Definitions
 - VM Name: lab1-repo1
-- Hostname: repo1.oss2.fu.igotit.co.kr
+- Hostname
+  + repo1.oss2.fu.igotit.co.kr | 192.168.5.151
+  + router1.oss2.fu.igotit.co.kr | 192.168.5.141
+  + app1.oss2.fu.igotit.co.kr | 192.168.5.131
+  + app2.oss2.fu.igotit.co.kr | 192.168.5.132
 - IP: 192.168.5.151
+- DNS record
+  + repo1   IN  A 192.168.5.151
+  + router1		IN	A	192.168.5.141
+  + app1		IN	A	192.168.5.131
+  + app2		IN	A	192.168.5.132
+
 ```
 ## Add dns record
 ## Create VM and OS installations
