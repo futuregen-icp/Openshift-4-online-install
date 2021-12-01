@@ -95,7 +95,7 @@ yum update
 # Reboot
 
 # Syn Repo
-```
+
 # apache install
 yum -y install httpd 
 systemctl enalbe httpd
