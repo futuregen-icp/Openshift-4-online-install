@@ -13,7 +13,7 @@ worker2.oss2.fu.igotit.co.kr   Ready    worker         279d   v1.19.0+1833054
 ```
 
 ## Planed
-- Remove only 3 infra node.
+- Remove only 3 infra node as infra3.oss2.fu.igotit.co.kr
 - add 2 node as router1, router2
 - change haproxy from worker1, worker2 to router1, router2
 - delete 2 node as worker1, worker2 
