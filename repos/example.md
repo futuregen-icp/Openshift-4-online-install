@@ -143,3 +143,14 @@ restorecon -vR /var/www/html
 
 ```
 
+## Example planned storage partition
+```
+/dev/mapper/rootvg-lv_root	5G	/
+/dev/mapper/rootvg-lv_usr	10G	/usr
+/dev/sda1/						1G /boot
+/dev/mapper/rootvg-lv_var	256G	/var
+/dev/mapper/rootvg-lv_home	5G	/home
+/dev/mapper/rootvg-lv-tmp	5G	/tmp
+/dev/mapper/rootvg-lv-log	300G	/log
+/dev/mapper/datavg-lv_sw		20G	/sw
+```
