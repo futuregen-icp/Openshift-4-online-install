@@ -212,6 +212,7 @@ yum install openshift-ansible openshift-clients jq
 ## Run playboot for scaleup
 ```
 cd /usr/share/ansible/openshift-ansible
+ansible-playbook -i /root/hosts playbooks/scaleup.yml
 ```
 
 ## Configure machine config pool for router node
