@@ -192,6 +192,16 @@ name=rhel-7-server-ose-4.6-rpms
 baseurl=http://192.168.5.151/repos/rhel-7-server-ose-4.6-rpms
 enabled=1
 gpgcheck=0
+[rhel-7-fast-datapath-rpms]
+name=rhel-7-fast-datapath-rpms
+baseurl=http://192.168.5.151/repos/rhel-7-fast-datapath-rpms
+enabled=1
+gpgcheck=0
+[rhel-7-server-optional-rpms]
+name=rhel-7-server-optional-rpms
+baseurl=http://192.168.5.151/repos/rhel-7-server-optional-rpms
+enabled=1
+gpgcheck=0
 ```
 
 ## Install packages on server as run ansible playbook
