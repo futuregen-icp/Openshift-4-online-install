@@ -38,3 +38,21 @@ yum install openresty
 ## Disconnected 
 ```
 ```
+
+레포를 다운 받는 방법
+```
+reposync —gpgcheck -lm —repoid=openresty —download_path=/path/to/
+
+```
+레포를 구성하려는 서버로 압축하여 이동
+레포를 구성하려는 서버에서 압축해제 및 이동
+
+명령이 없다면 
+yum install createrepo
+
+레포를 구성하려는 서버
+
+```
+Createrepo -v /path/to/openresty -o /path/to/openresty
+
+```
