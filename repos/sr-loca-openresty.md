@@ -1,5 +1,5 @@
 ## Service Request
-openresty the file as openresty 1.19.91 version to send mail
+Openresty file as openresty 1.19.91 version to send mail
 
 ## Reference download openresty (Officail Home)
 https://openresty.org/en/linux-packages.html#rhel
