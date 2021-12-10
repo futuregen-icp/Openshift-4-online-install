@@ -36,26 +36,23 @@ yum install openresty
 ```
 
 ## Disconnected 
+1. 레포 다운 (etc. 400 M)
 ```
-```
+# example 
+reposync --gpgcheck -lm --repoid=openresty --download_path=/var/www/html/openresty
 
-레포를 다운 받는 방법
-```
-reposync --gpgcheck -lm --repoid=openresty --download_path=/path/to/
-```
-만약 gpg 오류로 다운받은 레포가 삭제된다면 
-```
+# Refer. for uncheck gpg key
 reposync -lm --repoid=openresty --download_path=/path/to/
 ```
 
-레포를 구성하려는 서버로 압축하여 이동
-레포를 구성하려는 서버에서 압축해제 및 이동
+2. 레포를 구성하려는 서버로 압축하여 이동
+3. 레포를 구성하려는 서버에서 압축해제 및 이동
 
-명령이 없다면 
-yum install createrepo
-
-레포를 구성하려는 서버
-
+4. Create Repo on repo server
 ```
 Createrepo -v /path/to/openresty -o /path/to/openresty
+reposync --gpgcheck -lm --repoid=openresty --download_path=/var/www/html/openresty
+
+# Install package
+yum install createrepo
 ```
