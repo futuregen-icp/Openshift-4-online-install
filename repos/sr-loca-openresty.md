@@ -41,9 +41,13 @@ yum install openresty
 
 레포를 다운 받는 방법
 ```
-reposync —gpgcheck -lm —repoid=openresty —download_path=/path/to/
-
+reposync --gpgcheck -lm --repoid=openresty --download_path=/path/to/
 ```
+만약 gpg 오류로 다운받은 레포가 삭제된다면 
+```
+reposync -lm --repoid=openresty --download_path=/path/to/
+```
+
 레포를 구성하려는 서버로 압축하여 이동
 레포를 구성하려는 서버에서 압축해제 및 이동
 
@@ -54,5 +58,4 @@ yum install createrepo
 
 ```
 Createrepo -v /path/to/openresty -o /path/to/openresty
-
 ```
