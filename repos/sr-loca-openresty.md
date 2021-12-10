@@ -56,3 +56,15 @@ reposync --gpgcheck -lm --repoid=openresty --download_path=/var/www/html/openres
 # Install package
 yum install createrepo
 ```
+
+5. Configure repo file on Client server 
+```
+[root@repo1 yum.repos.d]# cat openresty.repo 
+[openresty]
+name=Official OpenResty Open Source Repository for RHEL
+baseurl=http://192.168.5.151/repos/openresty
+skip_if_unavailable=False
+gpgcheck=0
+repo_gpgcheck=0
+enabled=1
+```
