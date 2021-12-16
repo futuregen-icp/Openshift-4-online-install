@@ -112,6 +112,6 @@ oc set data secret/pull-secret -n openshift-config --from-file=.dockerconfigjson
 ```
 
 ## Refer 
-- https://access.redhat.com/solutions/5671401
-- https://docs.openshift.com/container-platform/4.6/registry/configuring_registry_storage/configuring-registry-storage-baremetal.html #registry
+- https://access.redhat.com/solutions/5671401 # Remark
+- https://docs.openshift.com/container-platform/4.6/registry/configuring_registry_storage/configuring-registry-storage-baremetal.html # Check trusted registry
 - https://docs.openshift.com/container-platform/4.5/openshift_images/managing_images/using-image-pull-secrets.html # Update pull secret
