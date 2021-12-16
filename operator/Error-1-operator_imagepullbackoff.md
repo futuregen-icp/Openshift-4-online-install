@@ -106,7 +106,7 @@ oc edit configmap registry-cas -n openshift-config
 
 ```
 ## 해결 
-: 글로벌 풀 시크릿 업데이트 (파드가 리스케줄링 되는 시점에 적용 됨)
+: 글로벌 클러스터 풀 시크릿 업데이트 (파드가 리스케줄링 되는 시점에 적용 됨)
 ```
 oc set data secret/pull-secret -n openshift-config --from-file=.dockerconfigjson=/opt/ocp4.6/pull/pull-secret-20211208.json
 ```
