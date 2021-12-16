@@ -103,8 +103,14 @@ $ oc create configmap registry-cas -n openshift-config \
 
 oc edit configmap registry-cas -n openshift-config
 >> check certificate as registry.oss2.fu.igotit.co.kr..5000:
+
+```
+해결 : 글로벌 풀 시크릿 업데이트 (파드가 리스케줄링 되는 시점에 적용 됨)
+```
+oc set data secret/pull-secret -n openshift-config --from-file=.dockerconfigjson=/opt/ocp4.6/pull/pull-secret-20211208.json
 ```
 
 ## Refer 
 - https://access.redhat.com/solutions/5671401
 - https://docs.openshift.com/container-platform/4.6/registry/configuring_registry_storage/configuring-registry-storage-baremetal.html #registry
+- https://docs.openshift.com/container-platform/4.5/openshift_images/managing_images/using-image-pull-secrets.html # Update pull secret
