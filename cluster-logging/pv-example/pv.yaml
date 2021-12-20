@@ -1,0 +1,14 @@
+kind: PersistentVolume
+metadata:
+  name: elasticsearch-elasticsearch-cdm-pv 
+  labels:
+    logging-cluster: elasticsearch
+spec:
+  storageClassName: logstore 
+  capacity:
+    storage: 200Gi
+  accessModes:
+    - ReadWriteOnce 
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/logstore/" 

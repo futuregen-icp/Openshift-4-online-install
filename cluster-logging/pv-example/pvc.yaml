@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: "2021-12-16T11:58:21Z"
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    logging-cluster: elasticsearch
+  name: elasticsearch-elasticsearch-cdm-ialik319-1
+  namespace: openshift-logging
+  resourceVersion: "132064144"
+  selfLink: /api/v1/namespaces/openshift-logging/persistentvolumeclaims/elasticsearch-elasticsearch-cdm-ialik319-1
+  uid: a6b973ef-cff0-43da-aea9-9e2142250698
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200G
+  storageClassName: logstore
+  volumeMode: Filesystem
+status:
+  phase: Pending
+
